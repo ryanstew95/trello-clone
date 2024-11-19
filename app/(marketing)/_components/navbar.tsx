@@ -9,7 +9,7 @@ export const Navbar = () => {
           <Logo />
         </div>
         <div className="space-x-4 md:block md:w-auto flex items-center justify-between w-full">
-          <a href="/login" className="mr-4">Login</a>
+          <a href="/sign-in" className="mr-4">Login</a>
           <a href="/sign-up" className="btn btn-primary">Register</a>
         </div>
       </div>

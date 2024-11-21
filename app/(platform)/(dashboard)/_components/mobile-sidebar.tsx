@@ -4,7 +4,9 @@ import { useMobileSidebar } from "@/hooks/use-mobile-sidebar";
 import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { Menu, Sidebar } from "lucide-react";
+import { Menu } from "lucide-react";
+import { Sidebar } from "./sidebar";
+
 import { Sheet, SheetContent, SheetTrigger, SheetTitle, SheetDescription, SheetHeader } from "@/components/ui/sheet";
 
 export const MobileSidebar = () => {
@@ -35,7 +37,7 @@ if (!isMounted) {
     >
 <Menu className="h-4 w-4"/>
     </Button>
-<Sheet open={isOpen} onOpenChange={onClose}>
+    <Sheet open={isOpen} onOpenChange={onClose}>
   <SheetTrigger></SheetTrigger>
   <SheetContent
   side="left"
@@ -45,9 +47,14 @@ if (!isMounted) {
       <SheetTitle>Your Title Here</SheetTitle>
       <SheetDescription>Optional description here</SheetDescription>
     </SheetHeader>
-    <Sidebar />
+<Sidebar 
+  storageKey="t-sidebar-mobile-state"
+/>
+
   </SheetContent>
 </Sheet>
+
     </>
   )
 };
+

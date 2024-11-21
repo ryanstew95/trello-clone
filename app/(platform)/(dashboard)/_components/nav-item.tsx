@@ -10,6 +10,8 @@ Settings,
 } from 'lucide-react';
 import { useRouter, usePathname } from "next/navigation";
 import { Button } from "@/components/ui/button";
+import { Skeleton } from "@/components/ui/skeleton";
+
 
 export type OrganizationMembershipResource = {
   id: string;
@@ -109,3 +111,16 @@ className="rounded-sm object-cover"
   </AccordionItem>
   );
 };
+
+NavItem.Skeleton = function SkeletonNavItem() {
+  return (
+    <div className="flex items-center gap-x-2">
+      <div className="w-10 h-10 relative shrink-0">
+        <Skeleton className="h-full w-full absolute"/>
+      </div>
+    
+        <Skeleton className="h-10 w-full"/>
+      
+    </div>
+  )
+}

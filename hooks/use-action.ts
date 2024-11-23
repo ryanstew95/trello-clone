@@ -20,4 +20,39 @@ const [error, setError] = useState<string | undefined>(undefined);
 const [data, setData] = useState<TOutput | undefined>(undefined);
 const [isLoading, setIsLoading] = useState<boolean>(false);
 
-}
+const execute = useCallback(
+  async (data: TInput) => {
+    setIsLoading(true);
+    try {
+      const result = await action(data);
+      if (!result) {
+        return;
+      }
+      if (result.fieldErrors) {
+        setFieldErrors(result.fieldErrors);
+      }
+      if (result.error) {
+        setError(result.error);
+        options.onError?.(result.error); 
+      }
+      if (result.data) {
+        setData(result.data);
+        options.onSuccess?.(result.data); 
+      }
+    } catch (error) {
+      console.error("Unexpected error:", error); 
+    } finally {
+      setIsLoading(false);
+      options.onCompleted?.();
+    }
+  },
+  [action, options]
+);
+return {
+execute,
+fieldErrors,
+error,
+data,
+isLoading,
+};
+};

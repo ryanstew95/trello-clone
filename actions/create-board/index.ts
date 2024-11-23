@@ -23,6 +23,9 @@ const handler = async (data: InputType): Promise<ReturnType> => {
   let board;
 
   try {
+    
+   // throw new Error("Simulated error");
+
     board = await db.board.create({
       data: {
         title,
